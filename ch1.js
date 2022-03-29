@@ -15,8 +15,19 @@ const isUnique = (str) => {
   return true
 }
 
+//1.2 check Permutation
+const isPermutation = (str1, str2) => {
+  if (str1.length !== str2.length) {
+    return false
+  }
+
+ return str1.split('').sort().join() === str2.split('').sort().join()
+}
+//time complexity o(logn) - they inrease in running time depending on input size,
+//but not as quickly as linear time
 
 
 module.exports = {
-  isUnique
+  isUnique,
+  isPermutation
 }
