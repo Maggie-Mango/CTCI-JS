@@ -37,10 +37,10 @@ const urlify = (str, length) => {
     let index = length + (whiteSp * 2)
 
     for (let i = length - 1; i > -1; i--) {
-     // console.log(str[i])
+
      if (str[i] === ' ') {
-       str[index - 1] = 2
-       str[index - 2] = 0
+       str[index - 1] = 0
+       str[index - 2] = 2
        str[index - 3] = '%'
        index -=3
      } else {
