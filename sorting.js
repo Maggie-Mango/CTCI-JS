@@ -63,3 +63,29 @@ const merge = (left, right) => {
 
 }
 //****************************** *//
+
+//n log n, you're not comparing everything against each other, just comparing to the pivot
+
+const quickSort = (nums) => {
+  //base case
+  if (nums.length === 0 ||  nums.length === 1) {
+    return nums
+  }
+
+  const pivot = nums[nums.length - 1]
+  const left = []
+  const right = []
+
+  for (let i = 0; i < nums.length; i++) {
+    if (nums[i] < pivot) {
+      left.push(nums[i])
+    } else {
+      right.push(nums[i])
+    }
+  }
+
+  return left.concat(pivot, right)
+
+
+
+}
