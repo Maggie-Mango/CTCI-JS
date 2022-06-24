@@ -15,7 +15,7 @@ const binarySearch = (nums, target) => {
 
 }
 
-let linearSearch(id, array) {
+function linearSearch(id, array) {
   for (let i = 0; i < array.length; i++) {
     if (id === array[i].id) {
       return array[i]
