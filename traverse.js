@@ -1,3 +1,5 @@
+/*3 functions that are depth first*/
+
 const preorderTraverse = (node, array) {
   if (!node) return array;
   array.push(node.value);
@@ -67,3 +69,11 @@ const tree = {
     }
   };
   */
+
+  //breadth first
+  const breadthFirstTraverse = (queue, array) => {
+    if (!queue.length) return array;
+
+    const node = queue.shift();
+    array.push(node.value)
+  };
