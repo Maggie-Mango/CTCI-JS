@@ -94,3 +94,41 @@ const tree = {
     }
     return array;
   }
+
+
+  //BST minHeightBst
+  //construct a BST from integers in array and return root of BST
+  //should MINIMIZE the height of the BST
+  //you are provided BST class used to construct BST
+
+
+
+
+
+
+
+
+  class BST {
+    constructor(value) {
+      this.value = value;
+      this.left = null;
+      this.right = null;
+    }
+
+    insert(value) {
+      if (value < this.value) {
+        if (this.left === null) {
+          this.left = new BST(value);
+        } else {
+          this.left.insert(value);
+        }
+      } else {
+        if (this.right === null) {
+          this.right = new BST(value);
+        } else {
+          this.right.insert(value);
+        }
+      }
+    }
+  }
+
