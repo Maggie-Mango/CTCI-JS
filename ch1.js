@@ -52,8 +52,35 @@ const urlify = (str, length) => {
   }
 }
 
+const palindromePermutation = (string) => {
+  let charMap = {};
+  const normStr = string.toLowerCase();
+
+  for (let i = 0; i < normStr.length; i++) {
+    const char = normStr[i];
+    if (char !== ' ') {
+      !charMap[char] ? charMap[char] = 1 : charMap[char]++
+    }
+  }
+
+  let isOdd = false;
+  for (let char in charMap) {
+    const checkFreq = charMap[char]
+
+    if (checkFreq % 2 !== 0) {
+      if (isOdd) {
+        return false
+      } else {
+        isOdd = true;
+      }
+    }
+  }
+  return true;
+}
+
 module.exports = {
   isUnique,
   isPermutation,
-  urlify
+  urlify,
+  palindromePermutation
 }
