@@ -52,6 +52,7 @@ const urlify = (str, length) => {
   }
 }
 
+//1.4
 const palindromePermutation = (string) => {
   let charMap = {};
   const normStr = string.toLowerCase();
@@ -78,9 +79,73 @@ const palindromePermutation = (string) => {
   return true;
 }
 
+//1.5 one away (My solution)
+const oneAway = (str1, str2) => {
+  const normStr1 = str1.toLowerCase()
+  const normStr2 = str2.toLowerCase()
+  let charMap = {};
+  if (normStr2.length > normStr1.length) {
+    const temp = normStr1
+    normStr1 = normStr2;
+    normStr2 = temp;
+  }
+
+  for (let i = 0; i < normStr1.length; i++) {
+    const char = normStr1[i]
+    !charMap[char] ? charMap[char] = 1 : charMap[char]++
+  }
+
+  return validateStr2(charMap, str2)
+}
+
+const validateStr2 = (obj, str) => {
+  for (let i = 0; i < str.length; i++) {
+    let char = str[i]
+    let freq = obj[char];
+   if (freq === 1) {
+     delete obj[str[i]];
+   } else if (freq > 1) {
+     freq--;
+   }
+
+}
+   if (Object.keys(obj).length === 1) {
+  	return true;
+  }
+  	return false;
+}
+
+
+const stringCompression = (str) => {
+  let charMap = {};
+  for (let i = 0; i < str.length; i++) {
+    let char = str[i];
+    if (!charMap[char]) {
+      charMap[char] = 1
+    } else {
+      charMap[char]++;
+    }
+  }
+  return compressStr(charMap, str)
+}
+
+const compressStr = (obj, str) => {
+  let compressed = ""
+  for (let char in obj) {
+   compressed += char
+   compressed += obj[char]
+  }
+  if (compressed.length < str.length) {
+    return compressed
+  }
+  return str;
+}
+
 module.exports = {
   isUnique,
   isPermutation,
   urlify,
-  palindromePermutation
+  palindromePermutation,
+  oneAway,
+  stringCompression
 }
