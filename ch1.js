@@ -115,7 +115,7 @@ const validateStr2 = (obj, str) => {
   	return false;
 }
 
-
+//1.6 (my solution)
 const stringCompression = (str) => {
   let charMap = {};
   for (let i = 0; i < str.length; i++) {
@@ -140,6 +140,26 @@ const compressStr = (obj, str) => {
   }
   return str;
 }
+
+//1.7 Rotate Matrix (90 degrees clockwise)
+const rotateMatrix = (matrix) => {
+  matrix = matrix.reverse();
+
+  for (let i = 0; i < matrix.length; i++) {
+    for (let j = 0; j < i; j++) {
+      const temp = matrix[i][j];
+      matrix[i][j] = matrix[j][i]
+      matrix[j][i] = temp;
+    }
+  }
+  return matrix;
+}
+
+
+
+
+//input [[0, 1, 2], [3, 4, 5], [6, 7, 8]]
+//output [[6, 3, 0], [7, 4, 1], [8, 5, 2]]
 
 module.exports = {
   isUnique,
