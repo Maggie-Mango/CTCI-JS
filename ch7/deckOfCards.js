@@ -2,49 +2,45 @@
 
 
 //7.1 Deck of Cards
-Class DeckOfCards() {
+class DeckOfCards {
   constructor() {
     this.deck = [];
     const suits = ['Hearts', 'Spades', 'Clubs', 'Diamonds'];
     const values = ['Ace', 2, 3, 4, 5, 6, 7, 8, 9, 10, 'Jack', 'Queen', 'King'];
 
-    for (let suit in suits) {
-      for (let value in values) {
-        this.deck.push(`${values[value]} of ${suits[suit]}`);
-      }
-    }
+   suits.forEach((suit) => {
+     values.forEach((value) => {
+       this.deck.push(`${suit} of ${value}`)
+     })
+   })
   }
 
-  shuffle() {
+  Shuffle() {
+    let { deck } = this;
+    let i, randomNum, storedCard;
+    for (let i = 0; i < deck.length - 1; i++) {
+      randomNum = Math.floor(Math.random() * (i + 1));
+
+      storedCard = deck[i];
+
+      //replace deck with random card
+      deck[i] = deck[randomNum]
+      //replace randomCard idx with storedCard
+      deck[randomNum] = storedCard;
+    }
+    return deck;
+  }
+
+  Length() {
     const { deck } = this;
-    let m = deck.length, i;
-
-    while(m) {
-      i = Math.floor(Math.random() * m--);
-
-      [deck[m], deck[i]] = [deck[i], deck[m]]
-      return this;
-    }
+    return deck.length;
   }
+
 }
 
+const deck = new DeckOfCards();
+//deck.shuffle()
+//deck.shuffle()
+console.log(deck.deck)
+console.log(deck.Length())
 
-//7.2 Call Center
-
-
-//7.3 Jukebox
-
-
-//7.4 Parking Lot
-
-
-//7.5 Online Book Reader
-
-//7.6 Jigsaw
-
-
-//7.7 Chat Survey
-
-//7.8 Othello
-
-//7.9 Circular Array
