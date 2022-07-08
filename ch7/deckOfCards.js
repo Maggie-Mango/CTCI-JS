@@ -38,10 +38,24 @@ class BlackJack {
   constructor() {
     console.log("Dealer: Let's play BlackJack, place your bets in USD");
     this.score = 0;
+    this.dealerScore = 0;
+    this.cards = new DeckOfCards();
+    this.bet = 0;
+    this.hand = [];
+    this.firstCard = [];
+    this.cards.Shuffle();
+    this.cards.Shuffle();
+    this.cards.Shuffle();
+  }
+
+  reset() {
+    this.score = 0;
     this.bet = 0;
     this.cards = new DeckOfCards();
     this.bet = 0;
     this.hand = [];
+    this.firstCard = [];
+    this.dealerScore = 0;
     this.cards.Shuffle();
     this.cards.Shuffle();
     this.cards.Shuffle();
@@ -53,10 +67,26 @@ class BlackJack {
     console.log(`your current hand is :`, this.hand);
     console.log(`*Dealer Stares* "So what will it be?"`)
     console.log(`~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~`)
+    console.log('your bet: ', this.bet)
   }
 
-  addScore(num) {
+  addScore(num, card) {
     this.score += num;
+    if (this.score > 21) {
+      this.youLose(card);
+    }
+  }
+
+  addDealerScore(num, card) {
+    this.dealerScore += num;
+    if (this.firstCard.length === 0) {
+      this.firstCard.push(card);
+      this.showFirstCard(card);
+    }
+  }
+
+  showFirstCard(card) {
+    console.log('The dealer flashes you her first card: ', this.firstCard)
   }
 
 
@@ -68,47 +98,88 @@ class BlackJack {
       console.log("Dealer: I'm sorry, I didn't get that. Enter a number")
     }
     if (num <= 1000) {
-      bet = num;
+      this.bet += num;
       console.log( `Dealer: Bets placed at $${bet}... Gotta start somewhere.`)
-      this.deal();
+      this.deal('player');
     } else if (num > 1000) {
+      this.bet += num;
       console.log( `Dealer: Bets placed at $${bet}. Big spender in the house!`)
-      this.deal();
+      this.deal('player');
     }
-    this.current();
+    this.deal('dealer');
   }
 
   //step2: Deal Cards
-  deal() {
-    console.log("Dealer: *Deals 2 cards*")
+  deal(player) {
+    if (player !== 'dealer') console.log("Dealer: *Deals 2 cards*")
+
     let { cards } = this;
-    console.log(cards)
     for (let i = 2; i > 0; i--) {
       let temp = cards.deck.pop();
       this.hand.push(temp);
       if (temp[1] === 'King' || temp[1] === 'Queen' || temp[1] === 'Jack') {
-        this.addScore(10)
+        if (player !== 'dealer') {
+          this.addScore(10)
+        } else {
+          this.addDealerScore(10, temp);
+        }
+
       } else if (temp[1] === 'Ace') {
         if ( (this.score + 11) > 21 ) {
-          this.addScore(1);
+          if (player !== 'dealer') {
+            this.addScore(1);
+          } else {
+            this.addDealerScore(1, temp);
+          }
+
         } else {
-          this.addScore(11);
+          if (player !== 'dealer') {
+            this.addScore(11);
+          } else {
+            this.addDealerScore(11, temp);
+          }
         }
       } else {
-        this.addScore(temp[1])
+        if (player !== 'dealer') {
+          this.addScore(temp[1]);
+        } else {
+          this.addDealerScore(temp[1], temp);
+        }
       }
     }
+    if (player !== 'dealer') this.current();
+  }
+
+  //step3: Hit
+  hit() {
+    console.log('HIT ME!!!')
+    let { cards } = this;
+    const temp = cards.deck.pop();
+    if (temp[1] === 'King' || temp[1] === 'Queen' || temp[1] === 'Jack') {
+        this.addScore(10, temp)
+      } else if (temp[1] === 'Ace') {
+        if ( (this.score + 11) > 21 ) {
+          this.addScore(1, temp);
+        } else {
+          this.addScore(11, temp);
+        }
+      } else {
+        this.addScore(temp[1], temp)
+      }
   }
 
 
-  //step3: Hit
-
-
   //Step4: Stand
+
+
+  youLose(card) {
+    console.log(`You drew a ${card[1]} of ${card[0]} making your score ${this.score}`)
+    console.log(`Dealer: Tough luck today. You lose $${this.bet}`);
+  }
 
 }
 
 const deck = new DeckOfCards();
 const game = new BlackJack();
 game.placeBet(1000);
-
+game.hit();
