@@ -26,9 +26,7 @@ class DeckOfCards {
     for (let i = 0; i < deck.length - 1; i++) {
       randomNum = Math.floor(Math.random() * (i + 1));
       storedCard = deck[i];
-      //replace deck with random card
       deck[i] = deck[randomNum]
-      //replace randomCard idx with storedCard
       deck[randomNum] = storedCard;
     }
   }
@@ -152,7 +150,7 @@ class BlackJack {
 
   //step3: Hit
   hit() {
-    console.log('HIT ME!!!')
+    console.log('You: HIT ME!!!')
     let { cards } = this;
     const temp = cards.deck.pop();
     if (temp[1] === 'King' || temp[1] === 'Queen' || temp[1] === 'Jack') {
@@ -166,20 +164,50 @@ class BlackJack {
       } else {
         this.addScore(temp[1], temp)
       }
+
+    if(this.dealerScore < 16) {
+      this.dealerHit()
+    }
+  }
+
+  dealerHit() {
+    let { cards } = this;
+    const temp = cards.deck.pop();
+    if (temp[1] === 'King' || temp[1] === 'Queen' || temp[1] === 'Jack') {
+        this.addDealerScore(10, temp)
+      } else if (temp[1] === 'Ace') {
+        if ( (this.score + 11) > 21 ) {
+          this.addDealerScore(1, temp);
+        } else {
+          this.addDealerScore(11, temp);
+        }
+      } else {
+        this.addDealerScore(temp[1], temp)
+      }
   }
 
 
   //Step4: Stand
+  stand() {
+    return this.determineWinner(this.score, this.dealerScore)
+  }
+
+  determineWinner(player, dealer) {
+    const winner = "YOU WIN!!!"
+    const loser = "The Dealer beat you mate"
+    if (21 - this.score < 21 - this.dealerScore) {
+      return winner
+    }
+    return loser
+  }
 
 
   youLose(card) {
     console.log(`You drew a ${card[1]} of ${card[0]} making your score ${this.score}`)
     console.log(`Dealer: Tough luck today. You lose $${this.bet}`);
+    this.reset();
   }
 
 }
 
-const deck = new DeckOfCards();
-const game = new BlackJack();
-game.placeBet(1000);
-game.hit();
+
