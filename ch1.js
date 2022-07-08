@@ -28,7 +28,7 @@ const isPermutation = (str1, str2) => {
 
 //1.3 URLify
 const urlify = (str, length) => {
-  const urlify = (str, length) => {
+
     str = str.split('')
     let whiteSp = 0
     for (let i = 0; i < length; i++) {
@@ -49,7 +49,7 @@ const urlify = (str, length) => {
      }
     }
     return str.join('')
-  }
+
 }
 
 //1.4
@@ -154,6 +154,53 @@ const rotateMatrix = (matrix) => {
   }
   return matrix;
 }
+
+//1.8 WIP
+/*
+const zeroMatrix = (matrix) => {
+  let iQueue = [];
+  let jQueue = [];
+
+  for (i = 0; i < matrix.length; i++) {
+    for (let j = 0; j < matrix[i].length; j++) {
+      const num = matrix[i][j];
+      if (num === 0) {
+        iQueue.push(i);
+        jQueue.push(j);
+      }
+    }
+  }
+
+  return transformZeroes(matrix, iQueue, jQueue)
+}
+
+const transformZeroes = (matrix, x, y) => {
+  while (x.length) {
+    console.log(x)
+    console.log(y)
+    let xDequeue = x.pop()
+    let yDequeue = y.pop()
+   return transformMatrix(matrix, xDequeue, yDequeue)
+  }
+}
+
+const transformMatrix = (matrix, x, y) => {
+  for (let i = 0; i < matrix.length; i++) {
+
+  }
+}
+
+
+var a = [[1,2,0],
+         [4,5,6],
+         [0,8,9]];
+
+
+console.log(zeroMatrix(a))
+*/
+
+
+//1.9 String Rotation
 
 
 
