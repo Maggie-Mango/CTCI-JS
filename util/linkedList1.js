@@ -43,5 +43,13 @@ class LinkedList {
 }
 
 //other methods found here as needed https://www.geeksforgeeks.org/implementation-linkedlist-javascript/
+/*testing
+const test = new LinkedList();
+console.log(test.add(5))
+console.log(test.add(7))
+console.log(test.add(8))
+console.log(test.add(32))
+console.log(test.printList())
+*/
 
 export.exports = LinkedList;
