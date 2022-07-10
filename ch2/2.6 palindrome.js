@@ -2,25 +2,47 @@ const LinkedList = require("../util/linkedList");
 
 //check if linked list is a palindrome
 const palindromeLinkedList = (list) => {
-  let queue = [];
-  let node = list.head;
-  let prev;
-  while (node) {
-    if (queue.indexOf(node.val) > -1) {
-      let val = queue.pop();
-      if (node.val !== val && prev.val !== val) {
-        return false;
-      }
-    } else {
-      queue.push(node.val);
-      prev = node;
-      node = node.next;
+  let slow = list.head;
+  let fast = list.head;
+  if (list.head == null || list.head.next == null) return true;
+  //slow will get to middle of the list
+  while (fast.next !== null && fast.next.next !== null) {
+    console.log(slow)
+    slow = slow.next;
+    fast = fast.next.next;
+  }
+  //reverse all nodes after slow
+  slow.next = reverse(slow.next);
+  //reassign slow reverse linkedlist
+  slow = slow.next;
+
+
+  while (slow !== null) {
+    if (list.head.val !== slow.val) {
+      return false;
     }
+    list.head = list.head.next;
+    slow = slow.next;
   }
-  if (queue.length === 1) {
-    return true;
+  return true;
+}
+
+const reverse = (head) => {
+  //holds the reversed list
+  let pre = null;
+  let next = null;
+
+  while (head !== null) {
+    //store the remaining list w/o the head
+    next = head.next;
+
+    head.next = pre;
+    pre = head;
+
+    //assign remianing list back so new head points to current node
+    head = next;
   }
-  return false;
+  return pre;
 }
 
 //testing
