@@ -8,7 +8,6 @@ const kthElement = (k, linkedList) => {
   curr.next = linkedList.head;
   let slow = curr;
   let fast = curr;
-  let counter = 0;
 
   while (k  > 0) {
     fast = fast.next;
@@ -33,4 +32,4 @@ for (let e of [1, 2, 3, 4, 5, 6, 7, 8, 8]) {
   list.add(e);
 }
 
-console.log(kthElement(3, list));
+console.log(kthElement(3, list)); //returns node with value 7
