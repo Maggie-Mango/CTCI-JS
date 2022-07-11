@@ -52,4 +52,4 @@ console.log(test.add(32))
 console.log(test.printList())
 */
 
-export.exports = LinkedList;
+module.exports = LinkedList;
