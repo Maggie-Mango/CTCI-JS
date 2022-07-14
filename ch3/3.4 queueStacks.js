@@ -6,7 +6,7 @@ class Queue {
     this.stack1 = new Stack();
     this.stack2 = new Stack();
   }
-
+  //always store first element in stack1
   enqueue(val) {
    if (this.stack1.data.length < 1) {
      this.stack1.push(val)
@@ -15,7 +15,7 @@ class Queue {
    }
     return this.stack1.data + ','+ this.stack2.data
   }
-
+ //returns first element (removed)
   dequeue() {
     let num = this.stack1.pop()
     let newVal = this.stack2.data[0];

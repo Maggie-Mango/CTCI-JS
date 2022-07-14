@@ -32,6 +32,27 @@ class LinkedList {
     return this.size;
   }
 
+  removeElement(element) {
+    let curr = this.head;
+    let prev = this.null;
+
+    while (cur !== null) {
+      //if element found
+      if (curr.val === element) {
+        if (prev === null) {
+          this.head = curr.next;
+        } else {
+          prev.next = curr.next;
+        }
+        this.size--;
+        return curr.val;
+      }
+      prev = curr;
+      curr = curr.next;
+    }
+    return -1;
+  }
+
   printList() {
     let current = this.head;
     let str = "";
