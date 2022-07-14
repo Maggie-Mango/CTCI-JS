@@ -5,6 +5,7 @@ class Node {
   }
 }
 
+
 class LinkedList {
   constructor() {
     this.head = null;
@@ -32,6 +33,20 @@ class LinkedList {
     return this.size;
   }
 
+  indexOf(element) {
+    let count = 0;
+    let current = this.head;
+
+    while (current !== null) {
+      if (current.val === element) {
+        return count;
+      }
+      count++
+      current = current.next;
+    }
+    return -1;
+  }
+
   removeElement(element) {
     let curr = this.head;
     let prev = this.null;
@@ -51,6 +66,33 @@ class LinkedList {
       curr = curr.next;
     }
     return -1;
+  }
+
+  removeFrom(index) {
+    if (index < 0 || index >= this.size) {
+      return console.log('invalid index')
+    } else {
+      let curr, prev, it = 0;
+      curr = this.head;
+      prev = curr;
+
+      //delete first element
+      if (index === 0) {
+        this.head = curr.next;
+      } else {
+        //iterate over the list to the
+        //position to remove an element
+        while (it < index) {
+          it++
+          prev = curr;
+          curr = curr.next;
+        }
+        //remove the element
+        prev.next = curr.next;
+      }
+      this.size--;
+      return curr.val;
+    }
   }
 
   printList() {
