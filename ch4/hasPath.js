@@ -26,11 +26,7 @@ const hasPath = (graph, src, dst) => {
 */
 
 module.exports = {
-  hasPath,
-};
-
-module.exports = {
-  hasPath,
+  hasPath
 };
 
 /*
