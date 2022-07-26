@@ -27,3 +27,16 @@ const explore = (graph, current, visited) => {
 module.exports = {
   connectedCount,
 }
+
+/*
+connectedComponentsCount({
+  0: [4,7],
+  1: [],
+  2: [],
+  3: [6],
+  4: [0],
+  6: [3],
+  7: [0],
+  8: []
+}); // -> 5
+*/
