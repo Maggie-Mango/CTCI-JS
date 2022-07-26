@@ -25,6 +25,7 @@ const buildGraph = (edges) => {
   const graph = {};
 
   for (let edge of edges) {
+    let [a, b] = edge;
     if (!(a in graph)) graph[a] = [];
     if(!(b in graph)) graph[b] = [];
     graph[a].push(b);
