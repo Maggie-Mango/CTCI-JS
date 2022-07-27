@@ -5,7 +5,8 @@ class Node {
     this.right = null;
   }
 }
-
+//time - O(n)
+//space - O(n )
 const bfs = (root) => {
   if (root === null) return [];
   let result = [];
