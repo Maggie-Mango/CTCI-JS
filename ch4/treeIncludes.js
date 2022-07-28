@@ -1,3 +1,4 @@
+//BFS
 const treeIncludes = (root, target) => {
   if (root === null) return false;
   const queue = [ root ];
@@ -10,3 +11,15 @@ const treeIncludes = (root, target) => {
   }
   return false;
 };
+
+
+//recursive (super clean) DFS
+
+const treeIncludes = (root, target) => {
+  if (root === null) return false;
+  if (root.val === target) return true;
+  const left = treeIncludes(root.left, target);
+  const right = treeIncludes(root.right, target);
+
+  return left || right;
+}
