@@ -13,7 +13,7 @@ const bfs = (root) => {
   const queue = [ root ];
   while (queue.length > 0) {
     const current = queue.shift();
-    queue.push(current.val);
+    result.push(current.val);
     if (current.left) queue.push(current.left);
     if (current.right) queue.push(current.right);
   }
