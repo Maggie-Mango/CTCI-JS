@@ -1,5 +1,10 @@
- const fibonacci = (num) => {
-  if (num <= 2) return 1;
-  //sum of number before + number before before
-  return fibonacci(num - 1) + fibonacci(num - 2);
- }
+var fib = function(n) {
+    let a = 1, b = 0, temp;
+    while ( n >= 0) {
+        temp = a;
+        a = a + b;
+        b = temp;
+        n--;
+    }
+    return a - b;
+};
