@@ -20,7 +20,7 @@ function threeNumberSum(array, targetSum) {
   return triplet;
 }
 
-//edited to watch out for dups
+//edited to watch out for dups (leetcode)
 var threeSum = function(nums) {
   nums.sort((a, b) => a - b);
   let target = 0;
