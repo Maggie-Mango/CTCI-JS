@@ -2,7 +2,8 @@
 //return array containing any combo of elements that add up to targetsum
 //if there are multiple posibilities you can return just 1
 
-function howSum(target, nums) {
+function howSum(target, nums, memo = {}) {
+  if (target in memo) return memo[target];
   if (target === 0) return [];
   if (target < 0) return null;
 
@@ -10,11 +11,15 @@ function howSum(target, nums) {
     const remainder = target - num;
     const remainderResult = howSum(remainder, nums);
     if (remainderResult !== null) {
-      return [...remainderResult, num];
+      memo[targetSum] = [...remainderResult, num]; //*m - this line creates a copy of an array (linear number of steps)
+      return memo[targetSum]
     }
   }
+  memo[targetSum] = null
   return null;
 };
+
+//without memo time: O(n^m * m) space: o(m)
 
 
 
