@@ -1,4 +1,5 @@
-const bestSum = (target, nums) => {
+const bestSum = (target, nums, memo = {}) => {
+  if (target in memo) return memo[target];
   if (target === 0) return [];
   if (target < 0) return null;
   let shortestCombo = null;
@@ -14,5 +15,13 @@ const bestSum = (target, nums) => {
       }
     }
   }
+  memo[target] = shortestCombo;
   return shortestCombo;
 }
+
+//m = target sum
+//n = numbers.length
+
+
+//Brute Force
+//time: O(n^m)
