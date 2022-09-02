@@ -15,7 +15,7 @@ const islandCount = (grid) => {
 
 const explore = (grid, row, col, visited) => {
   const rowInbounds = 0 <= row && row < grid.length;
-  const colInbounds = 0 <= col && col < grid.length;
+  const colInbounds = 0 <= col && col < grid[0].length;
   if (!rowInbounds || !colInbounds) return false;
   if (grid[row][col] === 'W') return false;
   const pos = row + ',' + col;
