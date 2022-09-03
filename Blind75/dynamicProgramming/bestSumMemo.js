@@ -19,9 +19,6 @@ const bestSum = (target, nums, memo = {}) => {
   return shortestCombo;
 }
 
-//m = target sum
-//n = numbers.length
-
-
-//Brute Force
-//time: O(n^m)
+//memoize
+//time: O(m^2 * n)
+//space: O(m^2)
