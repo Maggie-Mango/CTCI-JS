@@ -11,16 +11,16 @@ function howSum(target, nums, memo = {}) {
     const remainder = target - num;
     const remainderResult = howSum(remainder, nums);
     if (remainderResult !== null) {
-      memo[targetSum] = [...remainderResult, num]; //*m - this line creates a copy of an array (linear number of steps)
-      return memo[targetSum]
+      memo[target] = [...remainderResult, num]; //*m - this line creates a copy of an array (linear number of steps)
+      return memo[target]
     }
   }
-  memo[targetSum] = null
+  memo[target] = null
   return null;
 };
 
 //without memo time: O(n^m * m) space: o(m)
-
+//memoized time: O(n * m) space: o(m*m)
 
 
 howSum(8, [2, 3, 5]) // [2, 2, 2, 2] or [3, 5]

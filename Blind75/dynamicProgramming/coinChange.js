@@ -1,26 +1,14 @@
 var coinChange = function(coins, amount) {
-  coins.sort((a, b) => b - a);
-  let globalTot = -1;
-
-  findTotal(0, 0, 0)
-  return globalTot
-  function findTotal(start, sum, total) {
-
-      if (sum > amount) return;
-      if (sum === amount) {
-          if (globalTot === -1) {
-              globalTot = total
-          } else if (globalTot !== -1 && total < globalTot) {
-              globalTot = total;
+  const dp = Array(amount + 1).fill(Infinity);
+  dp[0] = 0;
+  for (let i = 1; i <= amount; i++) {
+      for (const coin of coins) {
+          if (i - coin >= 0) {
+              dp[i] = Math.min(dp[i], dp[i - coin] + 1) //number of needed coins
           }
-          return;
-      }
-      for (let i = 0; i < coins.length; i++) {
-          //if (coins[i] > amount) return;
-          findTotal(i, sum + coins[i], total + 1)
       }
   }
 
-
-  return -1;
+  return dp[amount] === Infinity ? -1 : dp[amount];
 };
+//also suseful https://anj910.medium.com/leetcode-322-coin-change-eaca56c9852c
