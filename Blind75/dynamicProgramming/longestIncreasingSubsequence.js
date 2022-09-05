@@ -45,7 +45,7 @@ space = o(n)
       if (num > sub[sub.size - 1]) {
           sub.push(num)
       } else {
-          const j = binarySearch(sub, num);
+          const j = binarySearch(sub, num); //bst to find smallest element grater than or equal to num
           sub[j] = num;
       }
   }
